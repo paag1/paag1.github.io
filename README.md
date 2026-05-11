@@ -1,1 +1,54 @@
-# paag1.github.io
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Para la niña de mi vida 💜</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- Fuente -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Música -->
+    <audio id="bg-music" loop>
+        <source src="assets/audio/Yiruma - Kiss The Rain.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- Pantalla inicial -->
+    <div id="start-screen">
+        <h1>Tengo algo para ti 💜</h1>
+        <button onclick="startGame()">Comenzar</button>
+    </div>
+
+    <!-- Juego -->
+    <div id="game-container" class="hidden">
+        <div id="game"></div>
+
+        <!-- Controles móviles -->
+        <div id="controls">
+            <button onclick="move(0,-1)">↑</button>
+            <div class="middle">
+                <button onclick="move(-1,0)">←</button>
+                <button onclick="move(1,0)">→</button>
+            </div>
+            <button onclick="move(0,1)">↓</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="hidden">
+        <div class="modal-content">
+            <img id="modal-img">
+            <p id="modal-text"></p>
+            <button onclick="closeModal()">Continuar</button>
+        </div>
+    </div>
+
+    <script src="scripts/data.js"></script>
+    <script src="scripts/game.js"></script>
+
+</body>
+
+</html>
