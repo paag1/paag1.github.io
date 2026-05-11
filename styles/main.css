@@ -1,0 +1,240 @@
+:root {
+    --bg: #f5f3ff;
+    --primary: #c4b5fd;
+    --secondary: #a78bfa;
+    --accent: #7c3aed;
+    --white: #ffffff;
+}
+
+body {
+    margin: 0;
+    font-family: 'Dancing Script', cursive;
+    background: var(--bg);
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Pantalla inicial */
+#start-screen {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Contenedor del juego */
+#game-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+    box-sizing: border-box;
+}
+
+/* Grid */
+#game {
+    width: min(92vw, 520px);
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+
+    #game {
+        width: 150vw;
+    }
+
+}
+
+/* Celdas */
+.cell {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background: #ede9fe;
+    transition: all 0.2s ease;
+    aspect-ratio: 1 / 1;
+}
+
+.visited-path {
+    background: #e9e4f7 !important;
+    opacity: 0.55;
+}
+
+/* Niebla */
+.hidden-cell {
+    background: #ddd6fe;
+}
+
+/* Celda clickeable */
+.cell.clickable {
+    cursor: pointer;
+    background: #c4b5fd;
+}
+
+/* .cell.clickable:hover {
+    transform: scale(1.05);
+    background: #a78bfa;
+} */
+
+@media (hover: hover) {
+
+    .cell.clickable:hover {
+        transform: scale(1.05);
+        background: #a78bfa;
+    }
+
+}
+
+/* Jugador */
+.player {
+    font-size: 2rem;
+    position: relative;
+}
+
+.player::after {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.5), transparent);
+    top: -35px;
+    left: -35px;
+    pointer-events: none;
+}
+
+/* Controles */
+#controls {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#controls .middle {
+    display: flex;
+    gap: 10px;
+}
+
+#controls button {
+    width: 60px;
+    height: 60px;
+
+    border: none;
+    border-radius: 15px;
+
+    background: var(--secondary);
+    color: white;
+
+    font-size: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: transform 0.1s ease, background 0.2s ease;
+}
+
+@media (max-width: 480px) {
+    #controls button {
+        width: 50px;
+        height: 50px;
+        font-size: 18px;
+    }
+}
+
+#controls button:active {
+    transform: scale(0.95);
+}
+
+button {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+    background: var(--secondary);
+    color: white;
+    font-size: 16px;
+}
+
+/* Modal */
+#modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    max-width: 700px;
+    animation: pop 0.4s ease;
+}
+
+#modal-text {
+    font-size: 35px;
+}
+
+.modal-content img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Iconos dentro de celdas */
+.event-icon {
+    width: 40%;
+    height: 40%;
+    object-fit: contain;
+    pointer-events: none;
+    /* evita interferencia con clicks */
+    transition: transform 0.2s ease;
+    opacity: 0;
+    transform: scale(0.5);
+    animation: fadeInIcon 0.3s ease forwards;
+}
+
+/* Hover más bonito */
+@media (hover: hover) {
+    .cell.clickable:hover .event-icon {
+        transform: scale(1.2);
+    }
+}
+
+/* Ajuste para que el contenido no “salte” */
+.cell {
+    position: relative;
+}
+
+@keyframes fadeInIcon {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pop {
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
