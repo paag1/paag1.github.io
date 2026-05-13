@@ -203,14 +203,55 @@ function restoreVolume() {
 
 // Modal
 function showModal(event) {
-    document.getElementById("modal").classList.remove("hidden");
-    document.getElementById("modal-img").src = event.image;
-    document.getElementById("modal-text").textContent = event.text;
+    const modal = document.getElementById("modal");
+    const mediaContainer = document.getElementById("modal-media");
+    const modalText = document.getElementById("modal-text");
+
+    modal.classList.remove("hidden");
+
+    // Limpiar contenido previo
+    mediaContainer.innerHTML = "";
+
+    const file = event.image;
+
+    // Detectar tipo de archivo
+    const extension = file.split(".").pop().toLowerCase();
+
+    //Video
+    if (["mp4", "webm", "ogg"].includes(extension)) {
+        const video = document.createElement("video");
+        video.src = file;
+        video.controls = true;
+        video.autoplay = true;
+        video.playsInline = true;
+
+        video.classList.add("modal-video");
+
+        mediaContainer.appendChild(video);
+    } else {
+        // Imagen
+        const img = document.createElement("img");
+        img.src = file;
+        img.classList.add("modal-image");
+        mediaContainer.appendChild(img);
+    }
+
+    modalText.textContent = event.text;
+
     lowerVolume();
 }
 
 function closeModal() {
-    document.getElementById("modal").classList.add("hidden");
+    const modal = document.getElementById("modal");
+
+    const video = modal.querySelector("video");
+
+    if (video) {
+        video.pause();
+    }
+
+    modal.classList.add("hidden");
+
     restoreVolume();
 }
 
