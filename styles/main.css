@@ -183,7 +183,7 @@ button {
 
 .modal-content {
     background: white;
-    width: min(90vw, 500px);
+    width: min(90vw, 550px);
     padding: clamp(16px, 3vw, 24px);
     border-radius: 20px;
     
