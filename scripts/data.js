@@ -85,7 +85,8 @@ const events = {
         text: "Ya llegamos al final de este recorrido y no podía no poner este momento que tuvimos juntos, cuando fuimos a jugar boliche por primera vez, ver lo sumamente competitivos " + 
         "que somos, lo divertido que fue jugar juntos y aunque tú me hayas ganada remontando la partida (quiero la revancha jaja), fue un momento tan lindo y divertido de haber compartido " + 
         "contigo. Y aunque aquí lleguemos al final de este recorrido, yo sé que seguiremos y seguiremos creando muchos más recuerdos juntos, recuerdos que llevaremos siempre en nuestros " + 
-        "corazones y nos harán sonreír cada que los recordemos porque quiero pasar el resto de mi vida junto a tu lado, "
+        "corazones y que nos harán sonreír cada que los recordemos porque quiero pasar el resto de mi vida junto a tu lado. Te amo con todo mi corazón, mi niña hermosa, preciosa, bonita 💜💜💜💜💜💜💜." + 
+        ""
     },
     end: {
         final: true

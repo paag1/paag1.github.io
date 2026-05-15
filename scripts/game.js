@@ -22,6 +22,37 @@ function markVisited(x, y) {
     visitedCells[`${x},${y}`] = true;
 }
 
+function createParticles() {
+
+    const container = document.getElementById("particles");
+
+    const symbols = ["💜", "✨", "🌷"];
+
+    for (let i = 0; i < 60; i++) {
+
+        const particle = document.createElement("div");
+
+        particle.classList.add("particle");
+
+        particle.textContent =
+            symbols[Math.floor(Math.random() * symbols.length)];
+
+        particle.style.left = Math.random() * 100 + "vw";
+        particle.style.top = Math.random() * 100 + "vh";
+
+        particle.style.animationDuration =
+            (8 + Math.random() * 10) + "s";
+
+        particle.style.animationDelay =
+            Math.random() * 5 + "s";
+
+        particle.style.fontSize =
+            (18 + Math.random() * 18) + "px";
+
+        container.appendChild(particle);
+    }
+}
+
 function startGame() {
     document.getElementById("start-screen").classList.add("hidden");
     document.getElementById("game-container").classList.remove("hidden");
@@ -272,3 +303,6 @@ function showFinal() {
   `;
     lowerVolume();
 }
+
+
+createParticles();
