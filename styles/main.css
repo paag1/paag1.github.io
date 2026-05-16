@@ -188,6 +188,20 @@ body {
 .player {
     font-size: 2rem;
     position: relative;
+
+    animation: playerMove 0.25s ease;
+}
+
+@keyframes playerMove {
+    from {
+        transform: scale(0.6);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .player::after {
@@ -277,6 +291,12 @@ button {
     border-radius: 20px;
 
     animation: pop 0.4s ease;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.25),
+        0 0 25px rgba(124, 58, 237, 0.15);
+
+    transform-origin: center;
 }
 
 #modal-text {
@@ -339,5 +359,86 @@ button {
     to {
         transform: scale(1) translateY(0);
         opacity: 1;
+    }
+}
+
+
+#final-screen {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+#final-message {
+    position: absolute;
+    z-index: 1;
+
+    text-align: center;
+
+    padding: 20px;
+
+    animation: fadeEntrance 1.5s ease;
+}
+
+#final-message h1 {
+    font-size: 4rem;
+}
+
+#final-message h2 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: #6d28d9
+}
+
+#final-message p,
+#final-message h3 {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+}
+
+#polaroid-container {
+    position: absolute;
+    inset: 0;
+}
+
+.polaroid {
+    position: absolute;
+    width: min(35vw, 220px);
+    background: white;
+    padding: 10px 10px 30px;
+    border-radius: 6px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    /* cursor: pointer; */
+    transition:
+        transform 0.3s ease,
+        opacity 0.4s ease;
+}
+
+.polaroid:hover {
+    transform: scale(1.05)
+}
+
+.polaroid img {
+    width: 100%;
+    display: block;
+    border-radius: 4px;
+}
+
+.remove-polaroid {
+    animation: removePhoto 0.6s forwards;
+}
+
+@keyframes removePhoto {
+    to {
+        transform:
+            scale(0.3)
+            rotate(20deg);
+
+        opacity: 0;
     }
 }

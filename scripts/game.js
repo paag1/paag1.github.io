@@ -26,9 +26,9 @@ function createParticles() {
 
     const container = document.getElementById("particles");
 
-    const symbols = ["💜", "✨", "🌷"];
+    const symbols = ["💜", "💜", "💜", "💕", "💞", "✨", "🌷", "🌺"];
 
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < 200; i++) {
 
         const particle = document.createElement("div");
 
@@ -291,16 +291,87 @@ function showFinal() {
     const modal = document.getElementById("modal");
 
     modal.classList.remove("hidden");
+
+    const finalImages = [
+        "assets/multimedia/mi_niña(1).jpg",
+        "assets/multimedia/mi_niña(2).jpg",
+        "assets/multimedia/mi_niña(3).jpg",
+        "assets/multimedia/mi_niña(4).jpg",
+        "assets/multimedia/mi_niña(5).jpg",
+        "assets/multimedia/mi_niña(6).jpg",
+        "assets/multimedia/mi_niña(7).jpg",
+        "assets/multimedia/mi_niña(8).jpg",
+        "assets/multimedia/mi_niña(9).jpg",
+        "assets/multimedia/mi_niña(10).jpg",
+        "assets/multimedia/mi_niña(11).jpg",
+        "assets/multimedia/mi_niña(12).jpg",
+        "assets/multimedia/mi_niña(13).jpg",
+        "assets/multimedia/mi_niña(14).jpg",
+        "assets/multimedia/mi_niña(15).jpg",
+        "assets/multimedia/mi_niña(16).jpg",
+        "assets/multimedia/mi_niña(17).jpg",
+        "assets/multimedia/mi_niña(18).jpg",
+        "assets/multimedia/mi_niña(19).jpg",
+        "assets/multimedia/mi_niña(20).jpg",
+        "assets/multimedia/mi_niña(21).jpg",
+        "assets/multimedia/mi_niña(22).jpg",
+        "assets/multimedia/mi_niña(23).jpg",
+    ];
+
     modal.innerHTML = `
-    <div class="modal-content">
-      <h2>💜</h2>
-      <p>Después de todo este camino...</p>
-      <p><strong>¿Quieres ser mi novia?</strong></p>
-      <video controls>
-        <source src="assets/video/final.mp4" type="video/mp4">
-      </video>
-    </div>
-  `;
+        <div id="final-screen">
+            <div id="final-message">
+                <h1>💜 Carolina aka "Mi niña" 💜</h1>
+                <h2>
+                    Gracias por los recuerdos que hemos vivido juntos...
+                </h2>
+                <p>
+                    
+                </p>
+                <h3>
+                    ...
+                </h3>
+            </div>
+            <div id="polaroid-container"></div>
+        </div>
+    `;
+
+    // Agregar fotos finales
+    const container = document.getElementById("polaroid-container");
+
+    finalImages.forEach((imgSrc, index) => {
+
+        const polaroid = document.createElement("div");
+
+        polaroid.classList.add("polaroid");
+
+        polaroid.style.transform =
+            `rotate(${Math.random() * 20 - 10}deg)`;
+
+        polaroid.style.top =
+            Math.random() * 70 + "%";
+
+        polaroid.style.left =
+            Math.random() * 70 + "%";
+
+        polaroid.innerHTML = `
+            <img src="${imgSrc}">
+        `;
+
+        polaroid.addEventListener("click", () => {
+
+            polaroid.classList.add("remove-polaroid");
+
+            setTimeout(() => {
+                polaroid.remove();
+            }, 600);
+
+        });
+
+        container.appendChild(polaroid);
+    });
+
+
     lowerVolume();
 }
 

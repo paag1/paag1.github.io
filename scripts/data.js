@@ -81,8 +81,8 @@ const events = {
         "de verlos completamente en vivo y en persona en unos de sus conciertos y quien sabe, puede que incluso verlos en su país 💜💜💜💜💜"
     },
     photo11: {
-        image: "assets/multimedia/mi_niña(5).mp4",
-        text: "Ya llegamos al final de este recorrido y no podía no poner este momento que tuvimos juntos, cuando fuimos a jugar boliche por primera vez, ver lo sumamente competitivos " + 
+        image: "assets/multimedia/mi_niña(1).mp4",
+        text: "Ya casiiii llegamos al final de este recorrido y no podía no poner este momento que tuvimos juntos, cuando fuimos a jugar boliche por primera vez, ver lo sumamente competitivos " + 
         "que somos, lo divertido que fue jugar juntos y aunque tú me hayas ganada remontando la partida (quiero la revancha jaja), fue un momento tan lindo y divertido de haber compartido " + 
         "contigo. Y aunque aquí lleguemos al final de este recorrido, yo sé que seguiremos y seguiremos creando muchos más recuerdos juntos, recuerdos que llevaremos siempre en nuestros " + 
         "corazones y que nos harán sonreír cada que los recordemos porque quiero pasar el resto de mi vida junto a tu lado. Te amo con todo mi corazón, mi niña hermosa, preciosa, bonita 💜💜💜💜💜💜💜." + 
