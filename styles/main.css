@@ -487,7 +487,7 @@ button {
     transition:
         transform 0.5s ease,
         opacity 0.5s ease;
-    cursor: pointer;
+    /* cursor: pointer; */
     animation:
         floatingPolaroid 4s ease-in-out infinite;
 }
