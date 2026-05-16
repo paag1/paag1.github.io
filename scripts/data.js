@@ -44,7 +44,7 @@ const events = {
             "armando tu carrito junto conmigo y no puedo olvidar que también fuiste mi amuletito de la suerte de nuevo porque de una encontramos el que quería y por eso me encantas 💜💜"
     },
     photo6: {
-        image: "assets/multimedia/mi_niña(123_1).mp4",
+        image: "assets/multimedia/mi_niña(123_2).mp4",
         text: "Este día no podía faltar, es uno de los que mas recuerdo porque en ese día nos dimos nuestros regalos navideños y claro, no puedo olvidar lo feliz y hermosa que " +
             "estabas por recibir tu regalo, créeme que fue tan lindo verte tan feliz y emocionada y a mi me puso muy feliz que te gustará tu regalo, tu collar de tulipan, una de tus " +
             "flores favoritas, y no podía olvidar el hermoso regalo que tú me diste, mi lego del carrito de Red Bull de la Formula 1, el cual de verdad me encantó como no tienes idea. " +
