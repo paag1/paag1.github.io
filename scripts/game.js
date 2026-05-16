@@ -255,6 +255,18 @@ function showModal(event) {
         video.controls = true;
         video.autoplay = true;
         video.playsInline = true;
+        video.muted = true; // Evitar problemas de autoplay en algunos navegadores
+        video.setAttribute("muted", ""); // Asegurar que esté marcado como mutado
+        video.setAttribute("playsinline", ""); // Para iOS
+        video.setAttribute("webkit-playsinline", ""); // Para Safari
+
+        video.addEventListener("ended", () => {
+            restoreVolume();
+        });
+
+        video.addEventListener("play", () => {
+            music.volume = 0.15; // Asegurar que la música esté baja mientras se reproduce el video
+        });
 
         video.classList.add("modal-video");
 
@@ -279,11 +291,15 @@ function closeModal() {
 
     if (video) {
         video.pause();
+        video.currentTime = 0;
+        video.src = ""; // Liberar recurso
     }
 
     modal.classList.add("hidden");
 
-    restoreVolume();
+    setTimeout(() => {
+        restoreVolume();
+    }, 100);
 }
 
 // Final
@@ -321,15 +337,24 @@ function showFinal() {
     modal.innerHTML = `
         <div id="final-screen">
             <div id="final-message">
-                <h1>💜 Carolina aka "Mi niña" 💜</h1>
+                <h1>💜 Para Carolina alias "Mi niña" 💜</h1>
                 <h2>
-                    Gracias por los recuerdos que hemos vivido juntos...
+                    Gracias por los recuerdos que hemos vivido juntos... 💜
                 </h2>
                 <p>
-                    
+                    💜💜 Y espero poder crear muchisimos más a tu lado, porque cada momento contigo es un tesoro que guardo con mucho cariño en mi corazón. Eres una grandiosa persona, 
+                    hermosa por dentro y por fuera, y de verdad que soy muy afortunado de tenerte en mi vida. Llegaste a mi vida de una manera tan inesperada, aún recuerdo la mirada 
+                    amenazadora que tuviste cuando me quede viendo la primera vez, pero nunca pensé que esa mirada fuera la razón por la estamos aquí y ahora, por la que siento un amor 
+                    tan grande por ti, un amor que la verdad no puedo describir con palabras y aunque he fallado en varias cosas, créeme que lo que siento por ti nada lo va a cambiar, 
+                    mi visión de lo que somos sigue aquí, todavía veo un hermoso futuro juntos y por la vida que nos espera por delante. Sé que no es suficiente con decirlo, hay hábitos 
+                    que tengo que desaprender, cosas que tengo que mejorar no solo por mi, sino por y para nosotros. Estoy sumamente decidido a esfuerzarme y trabajar lo necesario para ser 
+                    la persona que quiero ser y que mereces tener. No me quedo a lo mejor por costumbre ni porque sea lo más fácil, me quedo porque a pesar de las adversidades, lo que hemos 
+                    vivido, lo que hemos pasado, lo que hemos superado, lo que hemos construido, es lo suficientemente valioso como para querer seguir luchando por una mejor versión 
+                    de nosotros, de nuestra futura relación. Sé que juntos podemos superar cualquier obstáculo y salir de este laberinto.
+                    Te amo con todo mi corazón, mi niña hermosa 💜💜.
                 </p>
                 <h3>
-                    ...
+                    Por todo esto, quiero hacerte la siguiente pregunta... ¿Quieres... 💜?
                 </h3>
             </div>
             <div id="polaroid-container"></div>

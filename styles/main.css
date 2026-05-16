@@ -378,27 +378,70 @@ button {
 
 #final-message {
     position: absolute;
-    z-index: 1;
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     text-align: center;
 
     padding: 20px;
 
+    z-index: 0;
+
+    pointer-events: none;
+
     animation: fadeEntrance 1.5s ease;
 }
 
+#final-message h1,
+#final-message h2,
+#final-message p,
+#final-message h3 {
+    opacity: 0;
+    animation: cinematicText 1.2 ease forwards;
+}
+
 #final-message h1 {
-    font-size: 4rem;
+    font-size: clamp(4rem, 10vw, 8rem);
+    animation-delay: 0.2s;
+    transform: translateY(-80px);
 }
 
 #final-message h2 {
     font-size: clamp(2rem, 5vw, 4rem);
-    color: #6d28d9
+    color: #6d28d9;
+    animation-delay: 0.8s;
+    transform: translateY(-20px);
 }
 
-#final-message p,
-#final-message h3 {
+#final-message p{
     font-size: clamp(1.2rem, 3vw, 2rem);
+    animation-delay: 1.4s;
+    transform: translateY(20px);
+}
+
+#final-message h3 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    margin-top: 20px;
+    color: #7c3aed;
+    animation-delay: 2s;
+    transform: translateY(80px);
+}
+
+@keyframes cinematicText {
+    from {
+        opacity: 0;
+        filter: blur(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
 }
 
 #polaroid-container {
@@ -417,6 +460,8 @@ button {
     transition:
         transform 0.3s ease,
         opacity 0.4s ease;
+
+    z-index: 5;
 }
 
 .polaroid:hover {
