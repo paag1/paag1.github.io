@@ -32,13 +32,13 @@ const events = {
             "faltar la que es tu mejor amiga y la pasamos bien, comimos rico y nos tomamos fotos y bueno, no puedo olvidar lo hermosa que te veías ese día. 💜 PD: Si, recorte la foto jajaja"
     },
     photo4: {
-        image: "assets/multimedia/mi_niña(15_1).mp4",
+        image: "assets/multimedia/mi_niña(15_2).mp4",
         text: "Claro que no podía olvidar cuando fuimos a liverpool en búsqueda de mis mini carritos de lego de la Formula 1 donde fuiste mi amuletito de la suerte ya que " +
             "encontré el carrito que quería gracias a ti 💜💜💜. Ya después de que los conseguimos nos fuimos a buscar un lugar para poder armarlos " +
             "de una vez ahí mismo en la plaza jajaja y fue un momento muy lindo porque nos divertimos mucho armando el carrito y obvio, grabamos todo el proceso, lo cual me encanto 💜💜💜"
     },
     photo5: {
-        image: "assets/multimedia/mi_niña(14).mp4",
+        image: "assets/multimedia/mi_niña(14_1).mp4",
         text: "Obvio que después fuimos por más carritos de lego, solo que en esta ocasión, te compre uno para que también tuvieras tu carrito de lego de la Formula 1 y moradito " +
             "como te encanta, y fuimos exactamente al mismo lugar para poder armarlos juntos jajaja y claro, fue un momento muy lindo y uno que me encanta porque te veías tan feliz " +
             "armando tu carrito junto conmigo y no puedo olvidar que también fuiste mi amuletito de la suerte de nuevo porque de una encontramos el que quería y por eso me encantas 💜💜"
@@ -60,7 +60,7 @@ const events = {
             "y después de Isa, bueno, nos fuimos a mi casa y paso yo creo, el mejor momento de esa noche. Por estos y más momentos así, mi niña hermosa 💜💜💜💜"
     },
     photo8: {
-        image: "assets/multimedia/mi_niña(127_1).mp4",
+        image: "assets/multimedia/mi_niña(127_2).mp4",
         text: "Días después salimos a pasear y fuimos a comer a un nuevo lugar, un lugar muy lindo que nos encantó a ambos, pero no solo eso, también nos divertimos mucho porque " +
             "nos pusimos a armar el lego que me habías regalado en navidad y lo armamos ahí mismo en el restaurante jajaja, aunque eso sí, te desesperabas mucho porque no lo hacía " +
             "tan rápido como tú lo harías, al final no lo terminamos de armar en ese momento, pero lo poco que armamos fue muy divertido de hacer y obvio lo teníamos que preservar en video " +
@@ -81,7 +81,7 @@ const events = {
         "de verlos completamente en vivo y en persona en unos de sus conciertos y quien sabe, puede que incluso verlos en su país 💜💜💜💜💜"
     },
     photo11: {
-        image: "assets/multimedia/mi_niña(1).mp4",
+        image: "assets/multimedia/mi_niña(5_1).mp4",
         text: "Ya casiiii llegamos al final de este recorrido y no podía no poner este momento que tuvimos juntos, cuando fuimos a jugar boliche por primera vez, ver lo sumamente competitivos " + 
         "que somos, lo divertido que fue jugar juntos y aunque tú me hayas ganada remontando la partida (quiero la revancha jaja), fue un momento tan lindo y divertido de haber compartido " + 
         "contigo. Y aunque aquí lleguemos al final de este recorrido, yo sé que seguiremos y seguiremos creando muchos más recuerdos juntos, recuerdos que llevaremos siempre en nuestros " + 

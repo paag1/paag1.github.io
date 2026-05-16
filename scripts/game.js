@@ -58,7 +58,11 @@ function startGame() {
     document.getElementById("game-container").classList.remove("hidden");
 
     const music = document.getElementById("bg-music");
-    if (music) music.play();
+    if (music) {
+        music.play.then(() => {
+            music.muted = false;
+        }).catch(() => {});
+    }
 
     // Revelar zona inicial
     revealAround(player.x, player.y);
@@ -253,31 +257,39 @@ function showModal(event) {
         const video = document.createElement("video");
 
         video.src = file;
-        
-        video.autoplay = true;
-        video.loop = true;
-        
-        video.muted = true; // Evitar problemas de autoplay en algunos navegadores
+
+        video.muted = true;
         video.defaultMuted = true;
 
+        // iOS
         video.playsInline = true;
-        video.setAttribute("muted", ""); // Asegurar que esté marcado como mutado
         video.setAttribute("playsinline", ""); // Para iOS
         video.setAttribute("webkit-playsinline", ""); // Para Safari
 
-        // video.addEventListener("ended", () => {
-        //     restoreVolume();
-        // });
+        // Android/iOS
+        video.autoplay = false;
 
-        // video.addEventListener("play", () => {
-        //     music.volume = 0.15; // Asegurar que la música esté baja mientras se reproduce el video
-        // });
+        video.controls = false;
+
+        video.loop = true;
+
+        video.preload = "auto";
 
         video.classList.add("modal-video");
 
         mediaContainer.appendChild(video);
 
-        video.play().catch(() => {});
+        video.addEventListener("canplay", async () => {
+            try {
+                await video.play();
+
+                if (music.paused) {
+                    await music.play();
+                }
+            } catch (err) {
+                console.log("Autoplay bloqueado");
+            }
+        });
 
     } else {
         // Imagen
@@ -305,9 +317,17 @@ function closeModal() {
 
     modal.classList.add("hidden");
 
-    music.play().catch(() => {});
+    setTimeout(async () => {
+        try {
+            if (music.paused) {
+                await music.play();
+            }
+        } catch (err) {
+            console.log("No se pudo reanudar música");
+        }
 
-    restoreVolume();
+        restoreVolume();
+    }, 150);
 }
 
 // Final
@@ -317,29 +337,26 @@ function showFinal() {
     modal.classList.remove("hidden");
 
     const finalImages = [
-        "assets/multimedia/mi_niña(1).jpg",
-        "assets/multimedia/mi_niña(2).jpg",
-        "assets/multimedia/mi_niña(3).jpg",
-        "assets/multimedia/mi_niña(4).jpg",
-        "assets/multimedia/mi_niña(5).jpg",
-        "assets/multimedia/mi_niña(6).jpg",
-        "assets/multimedia/mi_niña(7).jpg",
-        "assets/multimedia/mi_niña(8).jpg",
-        "assets/multimedia/mi_niña(9).jpg",
-        "assets/multimedia/mi_niña(10).jpg",
-        "assets/multimedia/mi_niña(11).jpg",
-        "assets/multimedia/mi_niña(12).jpg",
-        "assets/multimedia/mi_niña(13).jpg",
-        "assets/multimedia/mi_niña(14).jpg",
-        "assets/multimedia/mi_niña(15).jpg",
-        "assets/multimedia/mi_niña(16).jpg",
-        "assets/multimedia/mi_niña(17).jpg",
-        "assets/multimedia/mi_niña(18).jpg",
-        "assets/multimedia/mi_niña(19).jpg",
-        "assets/multimedia/mi_niña(20).jpg",
-        "assets/multimedia/mi_niña(21).jpg",
-        "assets/multimedia/mi_niña(22).jpg",
-        "assets/multimedia/mi_niña(23).jpg",
+        "assets/multimedia/mi_niña(1).jpg", "assets/multimedia/mi_niña(2).jpg", "assets/multimedia/mi_niña(3).jpg", "assets/multimedia/mi_niña(4).jpg",
+        "assets/multimedia/mi_niña(5).jpg", "assets/multimedia/mi_niña(6).jpg", "assets/multimedia/mi_niña(7).jpg", "assets/multimedia/mi_niña(8).jpg",
+        "assets/multimedia/mi_niña(9).jpg", "assets/multimedia/mi_niña(10).jpg", "assets/multimedia/mi_niña(11).jpg", "assets/multimedia/mi_niña(12).jpg",
+        "assets/multimedia/mi_niña(13).jpg", "assets/multimedia/mi_niña(14).jpg", "assets/multimedia/mi_niña(15).jpg", "assets/multimedia/mi_niña(16).jpg",
+        "assets/multimedia/mi_niña(17).jpg", "assets/multimedia/mi_niña(18).jpg", "assets/multimedia/mi_niña(21).jpg", "assets/multimedia/mi_niña(22).jpg",
+        "assets/multimedia/mi_niña(23).jpg", "assets/multimedia/mi_niña(24).jpg", "assets/multimedia/mi_niña(25).jpg", "assets/multimedia/mi_niña(26).jpg",
+        "assets/multimedia/mi_niña(27).jpg", "assets/multimedia/mi_niña(28).jpg", "assets/multimedia/mi_niña(29).jpg", "assets/multimedia/mi_niña(30).jpg",
+        "assets/multimedia/mi_niña(31).jpg", "assets/multimedia/mi_niña(32).jpg", "assets/multimedia/mi_niña(33).jpg", "assets/multimedia/mi_niña(34).jpg",
+        "assets/multimedia/mi_niña(35).jpg", "assets/multimedia/mi_niña(38).jpg", "assets/multimedia/mi_niña(43).jpg", "assets/multimedia/mi_niña(44).jpg",
+        "assets/multimedia/mi_niña(46).jpg", "assets/multimedia/mi_niña(47).jpg", "assets/multimedia/mi_niña(48).jpg", "assets/multimedia/mi_niña(49).jpg",
+        "assets/multimedia/mi_niña(51).jpg", "assets/multimedia/mi_niña(54).jpg", "assets/multimedia/mi_niña(60).jpg", "assets/multimedia/mi_niña(62).jpg",
+        "assets/multimedia/mi_niña(65).jpg", "assets/multimedia/mi_niña(69).jpg", "assets/multimedia/mi_niña(71).jpg", "assets/multimedia/mi_niña(72).jpg",
+        "assets/multimedia/mi_niña(73).jpg", "assets/multimedia/mi_niña(75).jpg", "assets/multimedia/mi_niña(77).jpg", "assets/multimedia/mi_niña(78).jpg",
+        "assets/multimedia/mi_niña(116).jpg", "assets/multimedia/mi_niña(117).jpg", "assets/multimedia/mi_niña(118).jpg", "assets/multimedia/mi_niña(120).jpg",
+        "assets/multimedia/mi_niña(121).jpg", "assets/multimedia/mi_niña(122).jpg", "assets/multimedia/mi_niña(123).jpg", "assets/multimedia/mi_niña(125).jpg",
+        "assets/multimedia/mi_niña(128).jpg", "assets/multimedia/mi_niña(129).jpg", "assets/multimedia/mi_niña(133).jpg", "assets/multimedia/mi_niña(148).jpg",
+        "assets/multimedia/mi_niña(150).jpg", "assets/multimedia/mi_niña(152).jpg", "assets/multimedia/mi_niña(155).jpg", "assets/multimedia/mi_niña(157).jpg",
+        "assets/multimedia/mi_niña(158).jpg", "assets/multimedia/mi_niña(159).jpg", "assets/multimedia/mi_niña(170).jpg", "assets/multimedia/mi_niña(171).jpg",
+        "assets/multimedia/mi_niña(164).jpg", "assets/multimedia/mi_niña(165).jpg", "assets/multimedia/mi_niña(166).jpg", "assets/multimedia/mi_niña(167).jpg",
+        "assets/multimedia/mi_niña(168).jpg"
     ];
 
     modal.innerHTML = `
