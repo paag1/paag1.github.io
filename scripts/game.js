@@ -59,7 +59,7 @@ function startGame() {
 
     const music = document.getElementById("bg-music");
     if (music) {
-        music.play.then(() => {
+        music.play().then(() => {
             music.muted = false;
         }).catch(() => {});
     }
