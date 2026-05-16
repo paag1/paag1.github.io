@@ -32,7 +32,7 @@ body {
     position: relative;
     z-index: 2;
 
-    animation: fadeEntrace 1.5s ease;
+    animation: fadeEntrance 1.5s ease;
 }
 
 .star-content h1 {
@@ -77,7 +77,7 @@ body {
 }
 
 @keyframes floatParticle {
-    to {
+    from {
         transform: translateY(110vh);
     }
 
@@ -364,76 +364,100 @@ button {
 
 
 #final-screen {
-    position: relative;
+    position: fixed;
+    inset: 0;
 
-    width: 100%;
-    height: 100%;
+    overflow: hidden;
+
+    z-index: 5000;
 
     display: flex;
     justify-content: center;
     align-items: center;
-
-    overflow: hidden;
 }
 
-#final-message {
+#final-screen::before {
+    content: "";
+
     position: absolute;
     inset: 0;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* background: rgba(15, 10, 25, 0.55); */
+    background: rgba(195, 181, 253, 0.70);
 
-    text-align: center;
-
-    padding: 20px;
+    backdrop-filter: blur(12px);
 
     z-index: 0;
-
-    pointer-events: none;
-
-    animation: fadeEntrance 1.5s ease;
 }
 
-#final-message h1,
-#final-message h2,
-#final-message p,
-#final-message h3 {
-    opacity: 0;
-    animation: cinematicText 1.2 ease forwards;
+.final-message {
+    position: relative;
+    z-index: 2;
+    width: min(90vw, 850px);
+    padding: 40px 30px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    border:
+        1px solid rgba(255, 255, 255, 0.15);
+    box-shadow:
+        0 0 50px rgba(0, 0, 0, 0.35);
+    text-align: center;
+    color: white;
 }
 
-#final-message h1 {
-    font-size: clamp(4rem, 10vw, 8rem);
-    animation-delay: 0.2s;
-    transform: translateY(-80px);
+.final-message h1 {
+    font-size: clamp(4rem, 9vw, 8rem);
+    margin: 0;
+    color: white;
+    text-shadow:
+        0 0 30px rgba(0, 0, 0, 0.6);
+    animation:
+        textReveal 1s ease forwards;
 }
 
-#final-message h2 {
+/* SUBTÍTULO */
+.final-message h2 {
     font-size: clamp(2rem, 5vw, 4rem);
-    color: #6d28d9;
-    animation-delay: 0.8s;
-    transform: translateY(-20px);
+    margin-top: 15px;
+    color: #f5d0fe;
+    opacity: 0;
+    animation:
+        textReveal 1s ease forwards;
+    animation-delay: 0.6s;
 }
 
-#final-message p{
-    font-size: clamp(1.2rem, 3vw, 2rem);
-    animation-delay: 1.4s;
-    transform: translateY(20px);
-}
-
-#final-message h3 {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
+/* TEXTO */
+.final-message p {
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    line-height: 1.5;
     margin-top: 20px;
-    color: #7c3aed;
-    animation-delay: 2s;
-    transform: translateY(80px);
+    opacity: 0;
+    animation:
+        textReveal 1s ease forwards;
+    animation-delay: 1.2s;
+    text-shadow:
+        0 0 15px rgba(0, 0, 0, 0.5);
 }
 
-@keyframes cinematicText {
+/* FRASE FINAL */
+.final-message h3 {
+    font-size: clamp(2rem, 4vw, 4rem);
+    margin-top: 30px;
+    color: #c4b5fd;
+    opacity: 0;
+    animation:
+        textReveal 1s ease forwards;
+    animation-delay: 1.8s;
+    text-shadow:
+        0 0 20px rgba(124, 58, 237, 0.8);
+}
+
+/* ANIMACIÓN TEXTO */
+@keyframes textReveal {
     from {
         opacity: 0;
+        transform: translateY(30px);
         filter: blur(10px);
     }
 
@@ -444,46 +468,54 @@ button {
     }
 }
 
+/* CONTENEDOR DE POLAROIDS */
 #polaroid-container {
     position: absolute;
     inset: 0;
-}
-
-.polaroid {
-    position: absolute;
-    width: min(35vw, 220px);
-    background: white;
-    padding: 10px 10px 30px;
-    border-radius: 6px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-    /* cursor: pointer; */
-    transition:
-        transform 0.3s ease,
-        opacity 0.4s ease;
-
     z-index: 5;
 }
 
-.polaroid:hover {
-    transform: scale(1.05)
+/* POLAROID */
+.polaroid {
+    position: absolute;
+    width: clamp(120px, 18vw, 220px);
+    background: white;
+    padding: 10px 10px 35px;
+    border-radius: 8px;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.35);
+    transition:
+        transform 0.5s ease,
+        opacity 0.5s ease;
+    cursor: pointer;
+    animation:
+        floatingPolaroid 4s ease-in-out infinite;
 }
 
+/* IMAGEN */
 .polaroid img {
     width: 100%;
     display: block;
     border-radius: 4px;
 }
 
+/* AL QUITAR FOTO */
 .remove-polaroid {
-    animation: removePhoto 0.6s forwards;
+    opacity: 0;
+    transform:
+        scale(0.5) rotate(15deg);
+    pointer-events: none;
 }
 
-@keyframes removePhoto {
-    to {
-        transform:
-            scale(0.3)
-            rotate(20deg);
+/* MOVIMIENTO SUAVE */
+@keyframes floatingPolaroid {
 
-        opacity: 0;
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
     }
 }

@@ -251,26 +251,34 @@ function showModal(event) {
     //Video
     if (["mp4", "webm", "ogg"].includes(extension)) {
         const video = document.createElement("video");
+
         video.src = file;
-        video.controls = true;
+        
         video.autoplay = true;
-        video.playsInline = true;
+        video.loop = true;
+        
         video.muted = true; // Evitar problemas de autoplay en algunos navegadores
+        video.defaultMuted = true;
+
+        video.playsInline = true;
         video.setAttribute("muted", ""); // Asegurar que esté marcado como mutado
         video.setAttribute("playsinline", ""); // Para iOS
         video.setAttribute("webkit-playsinline", ""); // Para Safari
 
-        video.addEventListener("ended", () => {
-            restoreVolume();
-        });
+        // video.addEventListener("ended", () => {
+        //     restoreVolume();
+        // });
 
-        video.addEventListener("play", () => {
-            music.volume = 0.15; // Asegurar que la música esté baja mientras se reproduce el video
-        });
+        // video.addEventListener("play", () => {
+        //     music.volume = 0.15; // Asegurar que la música esté baja mientras se reproduce el video
+        // });
 
         video.classList.add("modal-video");
 
         mediaContainer.appendChild(video);
+
+        video.play().catch(() => {});
+
     } else {
         // Imagen
         const img = document.createElement("img");
@@ -297,9 +305,9 @@ function closeModal() {
 
     modal.classList.add("hidden");
 
-    setTimeout(() => {
-        restoreVolume();
-    }, 100);
+    music.play().catch(() => {});
+
+    restoreVolume();
 }
 
 // Final
@@ -336,7 +344,7 @@ function showFinal() {
 
     modal.innerHTML = `
         <div id="final-screen">
-            <div id="final-message">
+            <div class="final-message">
                 <h1>💜 Para Carolina alias "Mi niña" 💜</h1>
                 <h2>
                     Gracias por los recuerdos que hemos vivido juntos... 💜
